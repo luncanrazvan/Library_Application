@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete User</title>
+</head>
+<body>
+<div align="center">Select first name and last name in order to update:</div>
+<div align="center">
+<form action="{% url 'user_delete_action' %}" method="post">
+    {% csrf_token %}
+    <select name='first_name' style="list-style-type:none; padding-left: 100px">
+        {%  for user in users %}
+            <option>{{user.first_name}}</option>
+        {% endfor %}
+    </select>
+    <select name='last_name' style="list-style-type:none; padding-left: 100px">
+        {% for user in users %}
+            <option>{{ user.last_name }}</option>
+        {% endfor %}
+    </select>
+<div style="padding-top: 5px">
+<input type="submit" id="submit_button" value="Confirm Delete">
+</div>
+</form>
+</div>
+
+</body>
+</html>

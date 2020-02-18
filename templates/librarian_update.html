@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    body{
+        background-color: #3a7999;
+    }
+
+    select{
+        background-color: #bbccdd;
+        color: #2A3132;
+    }
+
+    .text_input{
+        background-color: #bbccdd;
+        color: #2A3132;
+        border: none;
+        border-radius: 2px;
+    }
+
+    #submit_button{
+        transition: 0.5s;
+        background-color: #bd5734;
+        color: #222222;
+        border: none;
+        border-radius: 2px;
+        padding: 10px;
+        width: 200px;
+    }
+
+    #submit_button:hover {
+        transform: skew(-20deg);
+        background-color: darkolivegreen;
+        color: #bbccdd;
+    }
+
+</style>
+<body>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<div align="center">Select title that needs to be updated:</div>
+<div align="center">
+<form action="{% url 'update_actions' %}" method="post">
+    {% csrf_token %}
+<select name='book_title_old' style="list-style-type:none; padding-left: 100px">
+    {%  for book in books %}
+        <option>{{ book.title}}</option>
+    {% endfor %}
+</select>
+<div style="padding-top: 5px">
+    <input class="text_input" name="book_subject" type="text" placeholder="Subject">
+    <input class="text_input" name="book_title_new" type="text" placeholder="Title">
+</div>
+<div style="padding-top: 5px">
+    <input class="text_input" name="book_author" type="text" placeholder="Author">
+    <input class="text_input" name="book_price" type="text" placeholder="Price">
+</div>
+<div style="padding-top: 5px">
+<input type="submit" id="submit_button" value="Confirm Changes">
+</div>
+</form>
+</div>
+</body>
+</html>

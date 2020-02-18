@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+    {%  for book in books %}
+        <li>{{ book.id }}</li>
+        <li>{{ book.col1}}</li>
+        <li>{{ book.col2 }}</li>
+        <li>{{ book.col3 }}</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'update' %}">item number</a>
+</body>
+</html>
+

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    body{
+        background-color: #2A3132;
+    }
+
+    label{
+        color: #bd5734;;
+    }
+
+    #submit_button{
+        border-radius: 3px;
+        background-color:#feb236 ;
+        color: #bd5734;
+        border: none;
+        transition: 0.3s;
+    }
+
+    #submit_button:hover {
+      background-color: #3e8e41;
+      color: white;
+    }
+
+    #select_title{
+        background-color: #d9ad7c;
+        color: #222222;
+    }
+
+</style>
+<body>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+    function showConfirmation() {
+        alert("Book has been deleted.");
+    }
+</script>
+<div align="center" style="padding-top: 260px">
+<label>Select book to be deleted:</label>
+<form action="{% url 'delete_action' %}" method="post">
+    {% csrf_token %}
+<select name='book_title' style="list-style-type:none;" id="select_title">
+    {%  for book in books %}
+        <option>{{ book.title}}</option>
+    {% endfor %}
+</select>
+<input type="submit" id="submit_button" value="Confirm Changes" onclick="showConfirmation()">
+</form>
+</div>
+</body>
+</html>

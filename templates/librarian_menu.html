@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+    body{
+        background-color: #bbbbbb;
+    }
+
+    a {
+      border-radius: 4px;
+      background-color: #f4511e;
+      border: none;
+      color: #FFFFFF;
+      text-align: center;
+      font-size: 28px;
+      padding: 20px;
+      width: 200px;
+      transition: all 0.5s;
+      cursor: pointer;
+      margin: 5px;
+    }
+
+    a span {
+      cursor: pointer;
+      display: inline-block;
+      position: relative;
+      transition: 0.5s;
+    }
+
+    a span:after {
+      content: '\00bb';
+      position: absolute;
+      opacity: 0;
+      top: 0;
+      right: -20px;
+      transition: 0.5s;
+    }
+
+    a:hover span {
+      padding-right: 25px;
+    }
+
+    a:hover span:after {
+      opacity: 1;
+      right: 0;
+    }
+</style>
+</head>
+<body>
+<div align="center" style="padding-top: 250px">
+    <a href="{% url 'librarian_add' %}"><span>Add New Book </span></a>
+    <a href="{% url 'librarian_update' %}"><span>Update Book </span></a>
+    <a href="{% url 'librarian_delete' %}"><span>Delete Book </span></a>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+</script>
+</body>
+</html>
+

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div align="center">
+<form action="{% url 'update1' %}" method="post">
+{% csrf_token %}
+<label>ID:</label>
+<input id="search" name="search" type="number">
+<br>
+<label>Name:</label>
+<input id="name", name="name" type="text">
+<br>
+<label>Type:</label>
+<input id="type" name="type" type="text">
+<br>
+<input class="btn btn-primary" type="submit" value="submit">
+<br>
+<label>Description:</label>
+<input id="description" name="description" type="text">
+</form>
+</div>
+<div align="center">
+<a href="{% url 'library' %}">item number</a>
+<h1>Available ID </h1>
+<ul style="list-style-type:none;">
+    {%  for book in books %}
+        <li>{{ book.id}}</li>
+    {% endfor %}
+</ul>
+</div>
+</body>
+</html>

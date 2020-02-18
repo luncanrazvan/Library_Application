@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    body{
+        background-color: #3a7999;
+    }
+
+    select{
+        background-color: #bbccdd;
+        color: #2A3132;
+    }
+
+    .text_input{
+        background-color: #bbccdd;
+        color: #2A3132;
+        border: none;
+        border-radius: 2px;
+    }
+
+    #submit_button{
+        transition: 0.5s;
+        background-color: #bd5734;
+        color: #222222;
+        border: none;
+        border-radius: 2px;
+        padding: 10px;
+        width: 200px;
+    }
+
+    #submit_button:hover {
+        transform: skew(-20deg);
+        background-color: darkolivegreen;
+        color: #bbccdd;
+    }
+
+</style>
+<body>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<div align="center">Select first name and last name in order to update:</div>
+<div align="center">
+<form action="{% url 'user_update_action' %}" method="post">
+    {% csrf_token %}
+    <select name='old_f_name' style="list-style-type:none; padding-left: 100px">
+        {%  for user in users %}
+            <option>{{user.first_name}}</option>
+        {% endfor %}
+    </select>
+    <select name='old_l_name' style="list-style-type:none; padding-left: 100px">
+        {% for user in users %}
+            <option>{{ user.last_name }}</option>
+        {% endfor %}
+    </select>
+<div style="padding-top: 5px">
+    <input class="text_input" name="first_name" type="text" placeholder="First Name">
+    <input class="text_input" name="last_name" type="text" placeholder="Last Name">
+</div>
+<div style="padding-top: 5px">
+    <input class="text_input" name="username" type="text" placeholder="username">
+    <input class="text_input" name="password" type="text" placeholder="password">
+    <input class="text_input" name="credits" type="text" placeholder="credits">
+</div>
+<div>
+
+</div>
+<div style="padding-top: 5px">
+<input type="submit" id="submit_button" value="Confirm Changes">
+</div>
+</form>
+</div>
+</body>
+</html>

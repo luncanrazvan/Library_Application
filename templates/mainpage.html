@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main Page</title>
+</head>
+<style>
+    body{
+        background-color: #2A3132;
+    }
+
+    .buttons{
+      background:#1AAB8A;
+      color:#fff;
+      border:none;
+      position:relative;
+      height:60px;
+      font-size:1.6em;
+      padding:0 2em;
+      cursor:pointer;
+      transition:800ms ease all;
+      outline:none;
+    }
+
+    .buttons:hover{
+      background:#fff;
+      color:#1AAB8A;
+    }
+
+    .buttons:before,.buttons:after{
+      content:'';
+      position:absolute;
+      top:0;
+      right:0;
+      height:2px;
+      width:0;
+      background: #1AAB8A;
+      transition:400ms ease all;
+    }
+
+    .buttons:after{
+      right:inherit;
+      top:inherit;
+      left:0;
+      bottom:0;
+    }
+
+    .buttons:hover:before,.buttons:hover:after{
+      width:100%;
+      transition:800ms ease all;
+    }
+</style>
+<body>
+<div align="center" style="padding-top: 250px;">
+    <a class="buttons" href="{% url 'login' %}" style="text-decoration:none">Borrower</a>
+</div>
+<div id="secondDivForButtons" align="center" style="padding-top: 10px;">
+    <a class="buttons" href="{% url 'librarian_menu' %}" style="text-decoration: none">Librarian</a>
+    <a class="buttons" href="{% url 'account_system_menu' %}" style="text-decoration: none">Account System</a>
+</div>
+</body>
+</html>

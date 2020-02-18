@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    .dropbtn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 16px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .dropbtn:hover, .dropbtn:focus {
+      background-color: #3e8e41;
+    }
+
+    #myInput {
+      box-sizing: border-box;
+      background-position: 14px 12px;
+      background-repeat: no-repeat;
+      font-size: 16px;
+      padding: 14px 20px 12px 45px;
+      border: none;
+      border-bottom: 1px solid #ddd;
+    }
+
+    #myInput:focus {outline: 3px solid #ddd;}
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f6f6f6;
+      min-width: 230px;
+      overflow: auto;
+      border: 1px solid #ddd;
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown a:hover {background-color: #ddd;}
+
+    #books_table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+
+    #books_table th{
+        background-color: chocolate;
+        color: bisque;
+    }
+
+    .selected{
+        background-color: #3a7999;
+    }
+
+    th, td{
+        text-align: left;
+    }
+
+</style>
+</head>
+<body>
+
+<div class="dropdown">
+    <form action="{% url 'print_filtered' %}" method="post">
+    {% csrf_token %}
+    <input name="filter" type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()" onclick="myFunction()">
+    <input name="filter_type", type="text", placeholder="Insert Here", id="filter_input">
+    <input class="dropbtn" type="submit" value="Show">
+
+    <div id="myDropdown" class="dropdown-content">
+            <a id="Title" onclick="clickAnchor(this)" class="anchor">Title</a>
+            <a id="Subject" onclick="clickAnchor(this)" class="anchor">Subject</a>
+            <a id="Name" onclick="clickAnchor(this)" class="anchor">Name</a>
+            <a id="Price" onclick="clickAnchor(this)" class="anchor">Price</a>
+    </div>
+    </form>
+</div>
+
+<button class="ok">Add to collection</button>
+
+
+<div align="center">
+    <table id="books_table">
+        <tr>
+            <th>Author</th>
+            <th>Price</th>
+            <th>Subject</th>
+            <th>Title</th>
+        </tr>
+            {% for book in books %}
+                <tr>
+                    <td>{{ book.author }}</td>
+                    <td>{{ book.price }}</td>
+                    <td>{{ book.subject }}</td>
+                    <td>{{ book.title }}</td>
+                </tr>
+            {% endfor %}
+    </table>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+
+    var value = "";
+
+    $("tr").click(function () {
+        $(this).addClass('selected').siblings().removeClass('selected');
+        value=$(this).find('td:nth-child(4)').html();
+        //alert(value);
+    });
+
+    $('.ok').on('click', function(e) {
+        var data = {'title': value};
+        $.post("{% url 'add_book_to_borrower'%}",data);
+
+    });
+    
+</script>
+</body>
+</html>
+
